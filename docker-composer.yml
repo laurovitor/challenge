@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+  db-mysql:
+    image: "mysql:8.0"
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    restart: always
+    volumes:
+      - ./db-mysql/data:/var/lib/mysql
+  db-mongo:
+    image: "mongo:4.2"
+    container_name: mongo-container
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+  api:
+    image: "node:10-slim"
+    build: "./api"
+    working_dir: "/home/node/app"
+    command: npm start
+    container_name: node-container
+    restart: always
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./api:/home/node/app
+      - /home/node/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db-mysql
+      - db-mongo
+  web:
+    image: "php:7.2-apache"
+    container_name: php-container
+    restart: always
+    volumes:
+      - ./website:/var/www/html
+    ports:
+      - "80:80"
+    depends_on:
+      - api
