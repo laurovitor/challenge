@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 
+const { product, middleware } = require("../controllers")();
+
 // ---------------------------------------------------------
 // Rotas Independentes
 // ---------------------------------------------------------
@@ -8,15 +10,19 @@ const router = Router();
 // ---------------------------------------------------------
 // Rotas não autenticadas
 // ---------------------------------------------------------
-router.get("/", (req, res) => { res.status(404).send(); });
 
 // ---------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------
-
+router.use(middleware.validateToken);
 
 // ---------------------------------------------------------
 // Rotas autenticadas
 // ---------------------------------------------------------
+router.route('/:id?')
+    .get(product.getProduct)
+    .post(product.postProduct)
+    .delete(product.deleteProduct)
+    .patch(product.patchProduct);
 
 module.exports = router;

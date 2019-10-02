@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="images/api.png" alt="">
+        <h2>Formulário de cadastro</h2>
+        <p class="lead">Para acessar o sistema de informações da api efetue um cadastro, preencha os campos
+            obrigatórios.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Dados pessoais</h4>
+            <form class="needs-validation" method="POST" action="/register" novalidate="">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="primeiroNome">Nome</label>
+                        <input name="firstName" type="text" class="form-control" id="primeiroNome" placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                            É obrigatório inserir um nome válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input name="lastName" type="text" class="form-control" id="sobrenome" placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                            É obrigatório inserir um sobre nome válido.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="nome@email.com" value=""
+                        required="">
+                    <div class="invalid-feedback">
+                        Por favor, insira um endereço de e-mail válido, para atualizações de entrega.
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="senha">Senha</label>
+                        <input name="password" type="password" class="form-control" id="senha" placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                            É obrigatório inserir uma senha.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="confirmarSenha">Confirmar senha</label>
+                        <input name="password2" type="password" class="form-control" id="confirmarSenha" placeholder="" value=""
+                            required="">
+                        <div class="invalid-feedback">
+                            É obrigatório inserir uma senha.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2019</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacidade</a></li>
+            <li class="list-inline-item"><a href="#">Termos</a></li>
+            <li class="list-inline-item"><a href="#">Suporte</a></li>
+        </ul>
+    </footer>
+</div>
+
+<!-- Principal JavaScript do Bootstrap
+    ================================================== -->
+<!-- Foi colocado no final para a página carregar mais rápido -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<script>
+        // Exemplo de JavaScript para desativar o envio do formulário, se tiver algum campo inválido.
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                // Selecione todos os campos que nós queremos aplicar estilos Bootstrap de validação customizados.
+                var forms = document.getElementsByClassName('needs-validation');
+
+                // Faz um loop neles e previne envio
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+</script>

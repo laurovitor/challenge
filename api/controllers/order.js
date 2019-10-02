@@ -1,15 +1,25 @@
 const controller = () => {
-    const putOrders = (req, res) => {
+    const postOrder = (req, res) => {
         res.status(200).send();
     };
 
-    const postOrders = (req, res) => {
+    const patchOrder = (req, res) => {
+        res.status(200).send();
+    };
+
+    const deleteOrder = (req, res) => {
+        res.status(200).send();
+    };
+
+    const getOrder = (req, res) => {
         res.status(200).send();
     };
 
     return {
-        putOrders: putOrders,
-        postOrders: postOrders
+        postOrder: postOrder,
+        patchOrder: patchOrder,
+        deleteOrder: deleteOrder,
+        getOrder: getOrder
     };
 };
 

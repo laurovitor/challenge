@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 
+const { customer, middleware } = require("../controllers")();
+
 // ---------------------------------------------------------
 // Rotas Independentes
 // ---------------------------------------------------------
@@ -8,15 +10,20 @@ const router = Router();
 // ---------------------------------------------------------
 // Rotas não autenticadas
 // ---------------------------------------------------------
-router.get("/", (req, res) => { res.status(404).send(); });
+router.route('/authenticate').post(customer.postAuthenticate);
 
 // ---------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------
-
+router.use(middleware.validateToken);
 
 // ---------------------------------------------------------
 // Rotas autenticadas
 // ---------------------------------------------------------
+router.route('/:id?')
+    .get(customer.getCustomer)
+    .post(customer.postCustomer)
+    .delete(customer.deleteCustomer)
+    .patch(customer.patchCustomer);
 
 module.exports = router;

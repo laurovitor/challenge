@@ -21,6 +21,10 @@ router.route('/')
   .get(controller.getIndex)
   .post(controller.postIndex);
 
+router.route('/register')
+  .get(controller.getRegister)
+  .post(controller.postRegister);
+
 // ---------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------

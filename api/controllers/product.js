@@ -1,30 +1,25 @@
 const controller = () => {
-    const postProducts = (req, res) => {
+    const postProduct = (req, res) => {
         res.status(200).send();
     };
 
-    const putProducts = (req, res) => {
+    const patchProduct = (req, res) => {
         res.status(200).send();
     };
 
-    const patchProducts = (req, res) => {
+    const deleteProduct = (req, res) => {
         res.status(200).send();
     };
 
-    const deleteProducts = (req, res) => {
-        res.status(200).send();
-    };
-
-    const getProducts = (req, res) => {
+    const getProduct = (req, res) => {
         res.status(200).send();
     };
 
     return {
-        postProducts: postProducts,
-        putProducts: putProducts,
-        patchProducts: patchProducts,
-        deleteProducts: deleteProducts,
-        getProducts: getProducts
+        postProduct: postProduct,
+        patchProduct: patchProduct,
+        deleteProduct: deleteProduct,
+        getProduct: getProduct
     };
 };
 
