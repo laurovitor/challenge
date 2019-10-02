@@ -5,7 +5,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/start",
+    "start": "nodemon ./bin/start",
     "test": "mocha --recursive"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "eslint-config-airbnb": "^18.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3"
+    "eslint-plugin-react": "^7.14.3",
+    "nodemon": "^1.19.3"
   }
 }

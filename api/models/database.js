@@ -1,16 +1,43 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const username = process.env.DB_USER || "root";
-const password = process.env.DB_PASS || "example";
-const database = process.env.DB_NAME || "api";
-const host = process.env.DB_HOST || "db-mongo";
-const port = process.env.DB_PORT || "27017";
+const db = {
+    username: process.env.DB_USER || "root",
+    password: process.env.DB_PASS || "root",
+    database: process.env.DB_NAME || "challenge",
+    host: process.env.DB_HOST || "localhost",
+    port: process.env.DB_PORT || "27017"
+}
 
-mongoose.connect(
-    `mongodb://${username}:${password}@${host}:${port}/${database}`,
-    { useCreateIndex: true, useNewUrlParser: true }
-);
+const uri = `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.database}`;
+
+const options = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+};
+
+mongoose.connect(uri, options, (err) => {
+    console.log(err);
+});
 
 mongoose.Promise = global.Promise;
-
-module.exports =  mongoose;
+/*
+dbm = mongoose.connection;
+dbm.on('error', err => {
+    console.log('Ocorreu um erro ao conectar com a database.');
+});
+dbm.once('connected', () => {
+    console.log('Conectado ao MongoDB');
+});
+dbm.once('disconnected', () => {
+    console.log('Desconectado do MongoDB');
+});
+process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+        console.log('dBase connection closed due to app termination');
+        process.exit(0);
+    });
+});
+*/
+module.exports = mongoose;

@@ -30,5 +30,5 @@ node_modules
 npm-debug.log
 
 # Database
-/db-mysql/data
-/db-mongo/data
+/mysql
+/mongodb
