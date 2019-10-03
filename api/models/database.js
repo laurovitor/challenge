@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const db = {
-    username: process.env.DB_USER || "root",
-    password: process.env.DB_PASS || "root",
+    username: process.env.DB_USER || "challenge",
+    password: process.env.DB_PASS || "challenge2019",
     database: process.env.DB_NAME || "challenge",
-    host: process.env.DB_HOST || "localhost",
-    port: process.env.DB_PORT || "27017"
+    host: process.env.DB_HOST || "ds229088.mlab.com",
+    port: process.env.DB_PORT || "29088"
 }
 
 const uri = `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.database}`;
@@ -17,12 +17,8 @@ const options = {
     useUnifiedTopology: true
 };
 
-mongoose.connect(uri, options, (err) => {
-    console.log(err);
-});
+mongoose.connect(uri, options);
 
-mongoose.Promise = global.Promise;
-/*
 dbm = mongoose.connection;
 dbm.on('error', err => {
     console.log('Ocorreu um erro ao conectar com a database.');
@@ -39,5 +35,7 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
-*/
+
+mongoose.Promise = global.Promise;
+
 module.exports = mongoose;

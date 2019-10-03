@@ -4,7 +4,7 @@ const { hashSync } = require("bcryptjs");
 const CustomerSchema = new mongoose.Schema(
   {
     cpf: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
@@ -27,8 +27,8 @@ const CustomerSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-CustomerSchema.pre("save", (next) => {
-  const hash = hashSync(this.password);
+CustomerSchema.pre("save", async function (next) {
+  const hash = await hashSync(this.password);
   this.password = hash;
   next();
 });

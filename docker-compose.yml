@@ -8,6 +8,11 @@ services:
     restart: always
     environment:
       NODE_ENV: production
+      DB_USER: "challenge"
+      DB_PASS: "challenge2019"
+      DB_NAME: "challenge"
+      DB_HOST: "ds229088.mlab.com"
+      DB_PORT: "29088"
     volumes:
       - ./api:/home/node/app
       - /home/node/app/node_modules

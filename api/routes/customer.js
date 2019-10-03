@@ -12,6 +12,8 @@ const { customer, middleware } = require("../controllers")();
 // ---------------------------------------------------------
 router.route('/authenticate').post(customer.postAuthenticate);
 
+router.route('/').post(customer.postCustomer);
+
 // ---------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------
@@ -22,7 +24,6 @@ router.use(middleware.validateToken);
 // ---------------------------------------------------------
 router.route('/:id?')
     .get(customer.getCustomer)
-    .post(customer.postCustomer)
     .delete(customer.deleteCustomer)
     .patch(customer.patchCustomer);
 
