@@ -27,7 +27,6 @@ const controller = () => {
 
     // Retorna lista de todos os usuários no banco
     const getCustomer = async (req, res) => {
-        //200 (OK), 404 (Not Found)
         const { id } = req.params;
         // Valida se o id é um ObjectId se for consulta o id no bando caso contrario lista todos os usuários do banco.
         const customer = await customerSchema.find(mongoose.Types.ObjectId.isValid(id) ? { _id: id } : null);
@@ -40,7 +39,6 @@ const controller = () => {
 
     // Cria um novo usuário no banco
     const postCustomer = async (req, res) => {
-        //201 (Created), 404 (Not Found), 409 (Conflict)
         const { name, email, password, cpf } = req.body;
         try {
             if (!Validator.cpf.isValid(cpf))
@@ -64,7 +62,6 @@ const controller = () => {
 
     // Atualiza um usuário no banco
     const patchCustomer = async (req, res) => {
-        //200 (OK), 204 (No Content), 404 (Not Found)
         const { id } = req.params;
         const { email, cpf } = req.body;
 
@@ -90,7 +87,6 @@ const controller = () => {
 
     // Deleta um usuário no banco
     const deleteCustomer = async (req, res) => {
-        //200 (OK), 404 (Not Found)
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });

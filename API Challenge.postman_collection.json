@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "047f61d6-c400-4635-8041-2f025392f4d4",
+		"name": "API Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/customer/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List/Find",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJfaWQiOiI1ZDk1NmI3YzUxMmNlNTExNmM2YzM3MTUiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAwNzM2MDksImV4cCI6MTYwMTYwOTYwOX0.8izC_2FAM87KkS58h6QTsHzPfSZ0Z4ZAdZE5NbAsFlA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/customer/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJfaWQiOiI1ZDk1NmI3YzUxMmNlNTExNmM2YzM3MTUiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAwNzM2MDksImV4cCI6MTYwMTYwOTYwOX0.8izC_2FAM87KkS58h6QTsHzPfSZ0Z4ZAdZE5NbAsFlA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/customer/5d957d75750d3c4374637131",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"5d957d75750d3c4374637131"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJfaWQiOiI1ZDk1NmI3YzUxMmNlNTExNmM2YzM3MTUiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAwNzM2MDksImV4cCI6MTYwMTYwOTYwOX0.8izC_2FAM87KkS58h6QTsHzPfSZ0Z4ZAdZE5NbAsFlA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Lauro\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/customer/5d9579334a777226588b1b50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"5d9579334a777226588b1b50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"123456\",\n\t\"cpf\":\"05240563900\",\n\t\"name\":\"Lauro Vitor\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/customer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
