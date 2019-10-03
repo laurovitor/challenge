@@ -9,6 +9,9 @@ const controller = () => {
     const postAuthenticate = async (req, res) => {
         const { email, password } = req.body;
 
+        if (!isEmail(email))
+            return res.status(400).send({ error: "Informe um email valido." });
+
         const customer = await customerSchema.findOne({ email }).select("+password");
 
         if (!customer) return res.status(400).send({ error: "Email não encontrado." });
@@ -82,10 +85,16 @@ const controller = () => {
     // Atualiza um usuário no banco
     const patchCustomer = async (req, res) => {
         const { id } = req.params;
-        const { email, cpf } = req.body;
+        const { name, email, cpf } = req.body;
 
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });
+
+        if (!isEmail(email))
+            return res.status(400).send({ error: "Informe um email valido." });
+
+        if (name.length < 5)
+            return res.status(400).send({ error: "O Nome esta muito curto." });
 
         if (await customerSchema.findOne({ email }))
             return res.status(400).send({ error: "Email já cadastrado." });
