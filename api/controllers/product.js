@@ -17,7 +17,8 @@ const controller = () => {
             return res.status(400).send({ error: "Informe um ID valido." });
 
         if (!customerLoggedIn.manager)
-            return res.status(400).send({ error: "Usuário não autorizado." });
+            if (id !== customerLoggedIn._id)
+                return res.status(400).send({ error: "Usuário não autorizado." });
 
         productSchema.findByIdAndRemove(id, (err, product) => {
             if (err)
