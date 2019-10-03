@@ -10,7 +10,24 @@ const controller = () => {
     };
 
     const deleteProduct = (req, res) => {
-        res.status(200).send();
+        const { id } = req.params;
+        const customerLoggedIn = req.customer;
+
+        if (!mongoose.Types.ObjectId.isValid(id))
+            return res.status(400).send({ error: "Informe um ID valido." });
+
+        if (!customerLoggedIn.manager)
+            return res.status(400).send({ error: "Usuário não autorizado." });
+
+        productSchema.findByIdAndRemove(id, (err, product) => {
+            if (err)
+                return res.status(400).send({ error: "Não foi possível remover este produto." });
+
+            if (!product)
+                return res.status(400).send({ error: "Usuário não encontrado." });
+
+            return res.status(200).send({ success: `${product.name} removido com sucesso.` });
+        });
     };
 
     const getProduct = async (req, res) => {

@@ -91,8 +91,9 @@ const controller = () => {
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });
 
-        if (id != customerLoggedIn._id || !customerLoggedIn.manager)
-            return res.status(400).send({ error: "Usuário não autorizado." });
+        if (!customerLoggedIn.manager)
+            if (id !== customerLoggedIn._id)
+                return res.status(400).send({ error: "Usuário não autorizado." });
 
         if (email && !isEmail(email))
             return res.status(400).send({ error: "Informe um email valido." });
@@ -125,8 +126,9 @@ const controller = () => {
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });
 
-        if (id != customerLoggedIn._id || !customerLoggedIn.manager)
-            return res.status(400).send({ error: "Usuário não autorizado." });
+        if (!customerLoggedIn.manager)
+            if (id !== customerLoggedIn._id)
+                return res.status(400).send({ error: "Usuário não autorizado." });
 
         customerSchema.findByIdAndRemove(id, (err, customer) => {
             if (err)
