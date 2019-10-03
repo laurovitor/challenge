@@ -12,7 +12,7 @@ const controller = () => {
         if (!isEmail(email))
             return res.status(400).send({ error: "Informe um email valido." });
 
-        const customer = await customerSchema.findOne({ email }).select("+password");
+        const customer = await customerSchema.findOne({ email }).select("+password +manager");
 
         if (!customer) return res.status(400).send({ error: "Email não encontrado." });
 
