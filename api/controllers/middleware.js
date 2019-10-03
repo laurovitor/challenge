@@ -20,7 +20,8 @@ const controller = () => {
         verify(token, "606cb46aea30425bdff4f6f7a32453e2", (err, decoded) => {
             if (err) return res.status(401).send({ error: "Token inválido." });
 
-            req.user = decoded.user;
+            console.log(decoded);
+            req.customer = decoded.customer;
             return next();
         });
     };

@@ -86,11 +86,15 @@ const controller = () => {
     const patchCustomer = async (req, res) => {
         const { id } = req.params;
         const { name, email, cpf } = req.body;
+        const customerLoggedIn = req.customer;
 
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });
 
-        if (!isEmail(email))
+        if (id != customerLoggedIn._id || !customerLoggedIn.manager)
+            return res.status(400).send({ error: "Usuário não autorizado." });
+
+        if (email && !isEmail(email))
             return res.status(400).send({ error: "Informe um email valido." });
 
         if (name.length < 5)
@@ -116,8 +120,13 @@ const controller = () => {
     // Deleta um usuário no banco
     const deleteCustomer = async (req, res) => {
         const { id } = req.params;
+        const customerLoggedIn = req.customer;
+
         if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).send({ error: "Informe um ID valido." });
+
+        if (id != customerLoggedIn._id || !customerLoggedIn.manager)
+            return res.status(400).send({ error: "Usuário não autorizado." });
 
         customerSchema.findByIdAndRemove(id, (err, customer) => {
             if (err)

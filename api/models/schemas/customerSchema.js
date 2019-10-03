@@ -22,6 +22,11 @@ const CustomerSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+    },
+    manager: {
+      type: Boolean,
+      default: false,
+      select: false
     }
   },
   { timestamps: true }
