@@ -1,12 +1,14 @@
 const { compareSync } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const Validator = require("cpf-cnpj-validator");
+const { isEmail } = require('validator');
 const { customerSchema, mongoose } = require("../models");
 
 const controller = () => {
     // Autenticação de usuário por email/senha
     const postAuthenticate = async (req, res) => {
         const { email, password } = req.body;
+
         const customer = await customerSchema.findOne({ email }).select("+password");
 
         if (!customer) return res.status(400).send({ error: "Email não encontrado." });
@@ -39,8 +41,20 @@ const controller = () => {
 
     // Cria um novo usuário no banco
     const postCustomer = async (req, res) => {
-        const { name, email, password, cpf } = req.body;
+        const { name, cpf, email, password, passwordConfirmation } = req.body;
         try {
+            if (!isEmail(email))
+                return res.status(400).send({ error: "Informe um email valido." });
+
+            if (name.length < 5)
+                return res.status(400).send({ error: "O Nome esta muito curto." });
+
+            if (password.length < 5)
+                return res.status(400).send({ error: "A senha esta muito curta." });
+
+            if (password != passwordConfirmation)
+                return res.status(400).send({ error: "A confirmação da senha não é valida." });
+
             if (!Validator.cpf.isValid(cpf))
                 return res.status(400).send({ error: "Informe um CPF valido." });
 
@@ -50,10 +64,15 @@ const controller = () => {
             if (await customerSchema.findOne({ cpf }))
                 return res.status(400).send({ error: "CPF já cadastrado." });
 
-            const customer = await customerSchema.create({ name, email, password, cpf });
-            customer.password = undefined;
+            customerSchema.create({ name, email, password, cpf }, (err, customer) => {
+                if (err)
+                    return res.status(400).send({ error: "Falha ao registra o usuário." });
 
-            return res.send({ customer });
+                // Remove a senha ao retornar dados do customer
+                customer.password = undefined;
+
+                return res.send({ customer });
+            });
         } catch (err) {
             console.error(err)
             return res.status(400).send({ error: "Falha no registro de usuário." });
