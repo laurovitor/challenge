@@ -39,7 +39,7 @@ const controller = () => {
         if (!customer)
             return res.status(400).send({ error: "Usuário não encontrado." });
 
-        return res.status(200).send({ customer: customer });
+        return res.status(200).send({ customers: customer });
     };
 
     // Cria um novo usuário no banco
