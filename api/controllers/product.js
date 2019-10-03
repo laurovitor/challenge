@@ -1,8 +1,36 @@
 const { productSchema, mongoose } = require("../models");
 
 const controller = () => {
-    const postProduct = (req, res) => {
-        res.status(200).send();
+    const postProduct = async (req, res) => {
+        const { name, sku, price } = req.body;
+        const customerLoggedIn = req.customer;
+
+        try {
+            if (!customerLoggedIn.manager)
+                return res.status(400).send({ error: "Usuário não autorizado." });
+
+            if (name.length < 3)
+                return res.status(400).send({ error: "O Nome esta muito curto." });
+
+            if (!sku)
+                return res.status(400).send({ error: "Informe um SKU." });
+
+            if (!price)
+                return res.status(400).send({ error: "Informe um valor." });
+
+            if (await productSchema.findOne({ sku }))
+                return res.status(400).send({ error: "SKU já cadastrado." });
+
+            productSchema.create({ name, sku, price }, (err, product) => {
+                if (err)
+                    return res.status(400).send({ error: "Falha ao registra o produto." });
+
+                return res.send({ product });
+            });
+        } catch (err) {
+            console.error(err)
+            return res.status(400).send({ error: "Falha no registro de produto." });
+        }
     };
 
     const patchProduct = async (req, res) => {
@@ -51,7 +79,7 @@ const controller = () => {
                 return res.status(400).send({ error: "Não foi possível remover este produto." });
 
             if (!product)
-                return res.status(400).send({ error: "Usuário não encontrado." });
+                return res.status(400).send({ error: "Produto não encontrado." });
 
             return res.status(200).send({ success: `${product.name} removido com sucesso.` });
         });

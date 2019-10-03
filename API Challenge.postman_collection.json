@@ -26,7 +26,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"123456\"\n}"
+							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"12345\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/customer/authenticate",
@@ -42,7 +42,7 @@
 					"response": []
 				},
 				{
-					"name": "List/Find",
+					"name": "Customer List/Find",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -88,7 +88,7 @@
 					"response": []
 				},
 				{
-					"name": "Del",
+					"name": "Customer Del",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -118,27 +118,27 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/customer/5d957d75750d3c4374637131",
+							"raw": "{{url}}/customer/5d96087bcf775135d44e9a1e",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"customer",
-								"5d957d75750d3c4374637131"
+								"5d96087bcf775135d44e9a1e"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "Customer Update",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJfaWQiOiI1ZDk1NmI3YzUxMmNlNTExNmM2YzM3MTUiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAwNzM2MDksImV4cCI6MTYwMTYwOTYwOX0.8izC_2FAM87KkS58h6QTsHzPfSZ0Z4ZAdZE5NbAsFlA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMjg3NjksImV4cCI6MTYwMTY2NDc2OX0.xYZzmrV_UhG6NFFe8hZ_oDjO7uHI2-NU6UMk9ejzlXk",
 									"type": "string"
 								}
 							]
@@ -158,23 +158,23 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Lauro\"\n}"
+							"raw": "{\n\t\"name\": \"Lauro Vitor\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/customer/5d9579334a777226588b1b50",
+							"raw": "{{url}}/customer/5d96394265757e382031f858",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"customer",
-								"5d9579334a777226588b1b50"
+								"5d96394265757e382031f858"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Add",
+					"name": "Customer Add",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -194,7 +194,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"1234\",\n\t\"passwordConfirmation\":\"1234\"\n\t\"cpf\":\"05240563900\",\n\t\"name\":\"Lauro Vitor\"\n}"
+							"raw": "{\n\t\"email\":\"laurovitor@gmail.com\",\n\t\"password\":\"12345\",\n\t\"passwordConfirmation\":\"12345\",\n\t\"cpf\":\"05240563900\",\n\t\"name\":\"Lauro Vitor\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/customer",
@@ -213,7 +213,182 @@
 		},
 		{
 			"name": "Product",
-			"item": [],
+			"item": [
+				{
+					"name": "Product List/Find",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjp0cnVlLCJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMzAxOTIsImV4cCI6MTYwMTY2NjE5Mn0.ogpDk66JnhyNtcLsvwWnvHwcTbDxgSW6vqcBhlurGYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/product/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Del",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjp0cnVlLCJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMzAxOTIsImV4cCI6MTYwMTY2NjE5Mn0.ogpDk66JnhyNtcLsvwWnvHwcTbDxgSW6vqcBhlurGYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/product/5d964b53de0c0d1700608884",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"5d964b53de0c0d1700608884"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjp0cnVlLCJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMzAxOTIsImV4cCI6MTYwMTY2NjE5Mn0.ogpDk66JnhyNtcLsvwWnvHwcTbDxgSW6vqcBhlurGYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Produto 1\",\n\t\"sku\": \"001\",\n\t\"price\": 100\n}"
+						},
+						"url": {
+							"raw": "{{url}}/product/5d964b53de0c0d1700608884",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"5d964b53de0c0d1700608884"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjp0cnVlLCJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMzAxOTIsImV4cCI6MTYwMTY2NjE5Mn0.ogpDk66JnhyNtcLsvwWnvHwcTbDxgSW6vqcBhlurGYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Produto Teste\",\n\t\"sku\":\"12345\",\n\t\"price\":100\n}"
+						},
+						"url": {
+							"raw": "{{url}}/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
