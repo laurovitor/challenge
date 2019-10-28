@@ -19,7 +19,7 @@ router.use(middleware.validateToken);
 // ---------------------------------------------------------
 // Rotas autenticadas
 // ---------------------------------------------------------
-router.route('/:id?')
+router.route('/:customerId/:orderId?')
     .get(order.getOrder)
     .post(order.postOrder)
     .delete(order.deleteOrder)

@@ -87,10 +87,6 @@ const controller = () => {
 
     const getProduct = async (req, res) => {
         const { id } = req.params;
-        const customerLoggedIn = req.customer;
-
-        if (!customerLoggedIn.manager)
-            return res.status(400).send({ error: "Usuário não autorizado." });
 
         // Valida se o id é um ObjectId se for consulta o id no bando caso contrario lista todos os produtos do banco.
         const product = await productSchema.find(mongoose.Types.ObjectId.isValid(id) ? { _id: id } : null);
