@@ -2,10 +2,19 @@ const { orderSchema, orderItemSchema, mongoose } = require("../models");
 
 const controller = () => {
     const postOrder = (req, res) => {
+        const { customer, total, status, items } = req.body;
+
+        // receber dados e criar novo pedido, apos
+        // adicionar o pedido incluir os produtos do
+        // pedido e retornar pedido populado para o cliente
+
         res.status(200).send();
     };
 
     const patchOrder = (req, res) => {
+
+        // altera o status do pedido
+
         res.status(200).send();
     };
 
@@ -26,7 +35,6 @@ const controller = () => {
             if (!order)
                 return res.status(400).send({ error: "Pedido não encontrado." });
 
-            return res.status(200).send({ success: `Pedido removido com sucesso.` });
         });
     };
 
