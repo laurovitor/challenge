@@ -9,7 +9,6 @@ const controller = () => {
             return res.status(400).send({ error: "Informe um ID valido." });
 
         try {
-
             orderSchema.create({ customer: customerId, total, status, items }, (err, order) => {
                 if (err)
                     return res.status(400).send({ error: "Falha ao registra o pedido." });
@@ -27,8 +26,9 @@ const controller = () => {
         const customerLoggedIn = req.customer;
         const { status } = req.body;
 
-        if (!customerLoggedIn.manager || customerLoggedIn._id !== customerId)
-            return res.status(400).send({ error: "Usuário não autorizado." });
+        if (!customerLoggedIn.manager)
+            if (customerLoggedIn._id !== customerId)
+                return res.status(400).send({ error: "Usuário não autorizado." });
 
         if (!mongoose.Types.ObjectId.isValid(orderId))
             return res.status(400).send({ error: "Informe um ID valido." });
