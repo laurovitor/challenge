@@ -393,7 +393,189 @@
 		},
 		{
 			"name": "Order",
-			"item": [],
+			"item": [
+				{
+					"name": "Order Del",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjp0cnVlLCJfaWQiOiI1ZDk2Mzk0MjY1NzU3ZTM4MjAzMWY4NTgiLCJuYW1lIjoiTGF1cm8gVml0b3IiLCJlbWFpbCI6ImxhdXJvdml0b3JAZ21haWwuY29tIiwiY3BmIjoiMDUyNDA1NjM5MDAiLCJfX3YiOjB9LCJpYXQiOjE1NzAxMzAxOTIsImV4cCI6MTYwMTY2NjE5Mn0.ogpDk66JnhyNtcLsvwWnvHwcTbDxgSW6vqcBhlurGYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/order/5d96394265757e382031f858/5db9d3a990a7002f38260cfd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"order",
+								"5d96394265757e382031f858",
+								"5db9d3a990a7002f38260cfd"
+							]
+						},
+						"description": "/order/custiomerId/orderId"
+					},
+					"response": []
+				},
+				{
+					"name": "Order Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjpmYWxzZSwiX2lkIjoiNWRiOTkxYTJmMGM2ZDgyZDMwZDJkNGQ4IiwibmFtZSI6IkxhdXJvIFZpdG9yIiwiZW1haWwiOiJsYXVyb3ZpdG9yQGdtYWlsLmNvbSIsImNwZiI6IjA1MjQwNTYzOTAwIiwiX192IjowfSwiaWF0IjoxNTcyNDQzMTIwLCJleHAiOjE2MDM5NzkxMjB9.HhVKL041uC9dMgsPCOYueLiTniNpeFOZQuz3ZA_ZZgQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"total\":\"5\",\n\t\"status\":\"em processo\",\n\t\"items\":[\n\t\t{\n\t\t\t\"product\": \"5db9921bf0c6d82d30d2d4db\",\n        \t\"order\": \"\",\n        \t\"amount\": 1,\n        \t\"price_unit\": 100,\n        \t\"total\": 100\n\t\t},\n\t\t{\n\t\t\t\"product\": \"5db9921bf0c6d82d30d2d4db\",\n        \t\"order\": \"\",\n        \t\"amount\": 2,\n        \t\"price_unit\": 10,\n        \t\"total\": 20\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/order/5db991a2f0c6d82d30d2d4d8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"order",
+								"5db991a2f0c6d82d30d2d4d8"
+							]
+						},
+						"description": "/order/custiomerId"
+					},
+					"response": []
+				},
+				{
+					"name": "Order List/Find",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjpmYWxzZSwiX2lkIjoiNWRiOTkxYTJmMGM2ZDgyZDMwZDJkNGQ4IiwibmFtZSI6IkxhdXJvIFZpdG9yIiwiZW1haWwiOiJsYXVyb3ZpdG9yQGdtYWlsLmNvbSIsImNwZiI6IjA1MjQwNTYzOTAwIiwiX192IjowfSwiaWF0IjoxNTcyNDQzMTIwLCJleHAiOjE2MDM5NzkxMjB9.HhVKL041uC9dMgsPCOYueLiTniNpeFOZQuz3ZA_ZZgQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/order/5db991a2f0c6d82d30d2d4d8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"order",
+								"5db991a2f0c6d82d30d2d4d8"
+							]
+						},
+						"description": "/order/custiomerId/orderId[Opcional]"
+					},
+					"response": []
+				},
+				{
+					"name": "Order Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJtYW5hZ2VyIjpmYWxzZSwiX2lkIjoiNWRiOTkxYTJmMGM2ZDgyZDMwZDJkNGQ4IiwibmFtZSI6IkxhdXJvIFZpdG9yIiwiZW1haWwiOiJsYXVyb3ZpdG9yQGdtYWlsLmNvbSIsImNwZiI6IjA1MjQwNTYzOTAwIiwiX192IjowfSwiaWF0IjoxNTcyNDQzMTIwLCJleHAiOjE2MDM5NzkxMjB9.HhVKL041uC9dMgsPCOYueLiTniNpeFOZQuz3ZA_ZZgQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\":\"Processado\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/order/5db991a2f0c6d82d30d2d4d8/5db99227f0c6d82d30d2d4dc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"order",
+								"5db991a2f0c6d82d30d2d4d8",
+								"5db99227f0c6d82d30d2d4dc"
+							]
+						},
+						"description": "/order/custiomerId/orderId"
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
