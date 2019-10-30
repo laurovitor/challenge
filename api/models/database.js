@@ -5,7 +5,8 @@ const db = {
     password: process.env.DB_PASS || "root",
     database: process.env.DB_NAME || "challenge",
     host: process.env.DB_HOST || "127.0.0.1",
-    port: process.env.DB_PORT || "27017"
+    port: process.env.DB_PORT || "27017",
+    authSource: process.env.DB_AUTH || "admin"
 }
 
 const uri = `mongodb://${db.username}:${db.password}@${db.host}:${db.port}/${db.database}`;
@@ -15,7 +16,7 @@ const options = {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-    authSource: "admin"
+    authSource: db.authSource
 };
 
 mongoose.connect(uri, options);
