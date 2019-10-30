@@ -12,10 +12,25 @@ const controller = () => {
     };
 
     const patchOrder = (req, res) => {
+        const { orderId, customerId } = req.params;
+        const customerLoggedIn = req.customer;
+        const { status } = req.body;
 
-        // altera o status do pedido
+        if (!customerLoggedIn.manager || customerLoggedIn._id !== customerId)
+            return res.status(400).send({ error: "Usuário não autorizado." });
 
-        res.status(200).send();
+        if (!mongoose.Types.ObjectId.isValid(orderId))
+            return res.status(400).send({ error: "Informe um ID valido." });
+
+        orderSchema.findByIdAndUpdate(orderId, { status: status }, (err, order) => {
+            if (err)
+                return res.status(400).send({ error: "Não foi possível atualizar este pedido." });
+
+            if (!order)
+                return res.status(400).send({ error: "Pedido não encontrado." });
+
+            return res.status(200).send({ success: true });
+        });
     };
 
     const deleteOrder = (req, res) => {
@@ -35,13 +50,13 @@ const controller = () => {
             if (!order)
                 return res.status(400).send({ error: "Pedido não encontrado." });
 
+            return res.status(200).send({ success: true });
+
         });
     };
 
     const getOrder = async (req, res) => {
         const { customerId, orderId } = req.params;
-
-        // Valida se o id é um ObjectId se for consulta o id no bando caso contrario lista todos os pedidos do banco.
         const filters = {};
 
         if (mongoose.Types.ObjectId.isValid(orderId))
