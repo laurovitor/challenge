@@ -1,9 +1,10 @@
-const { orderSchema, orderItemSchema, mongoose } = require("../models");
+const { orderSchema, mongoose } = require("../models");
 
 const controller = () => {
-    const postOrder = (req, res) => {
+    const postOrder = async (req, res) => {
         const { customerId } = req.params;
         const { total, status, items } = req.body;
+        console.log(req.body)
 
         if (!mongoose.Types.ObjectId.isValid(customerId))
             return res.status(400).send({ error: "Informe um ID valido." });

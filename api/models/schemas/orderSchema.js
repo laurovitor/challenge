@@ -12,8 +12,16 @@ const OrderSchema = new mongoose.Schema(
       required: true
     },
     items: [{
-      item: { type: mongoose.Schema.ObjectId, ref: 'Item' },
-      createdAt: { type: Date, default: Date.now }
+      product: { type: mongoose.Schema.ObjectId, ref: 'Product' },
+      amount: {
+        type: Number
+      },
+      price_unit: {
+        type: Number
+      },
+      total: {
+        type: Number
+      }
     }]
   },
   { timestamps: true }
