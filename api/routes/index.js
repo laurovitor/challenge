@@ -17,13 +17,7 @@ router.use('/order', orderRoute);
 // ---------------------------------------------------------
 // Rotas não autenticadas
 // ---------------------------------------------------------
-router.route('/')
-  .get(controller.getIndex)
-  .post(controller.postIndex);
-
-router.route('/register')
-  .get(controller.getRegister)
-  .post(controller.postRegister);
+router.route('/').get(controller.getIndex);
 
 // ---------------------------------------------------------
 // Middleware
@@ -33,8 +27,5 @@ router.use(controller.middleware.validateToken);
 // ---------------------------------------------------------
 // Rotas autenticadas
 // ---------------------------------------------------------
-router.route('/dashboard')
-  .get(controller.getDashboard)
-  .post(controller.postDashboard);
 
 module.exports = router;
