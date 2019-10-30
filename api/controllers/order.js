@@ -2,13 +2,24 @@ const { orderSchema, orderItemSchema, mongoose } = require("../models");
 
 const controller = () => {
     const postOrder = (req, res) => {
-        const { customer, total, status, items } = req.body;
+        const { customerId } = req.params;
+        const { total, status, items } = req.body;
 
-        // receber dados e criar novo pedido, apos
-        // adicionar o pedido incluir os produtos do
-        // pedido e retornar pedido populado para o cliente
+        if (!mongoose.Types.ObjectId.isValid(customerId))
+            return res.status(400).send({ error: "Informe um ID valido." });
 
-        res.status(200).send();
+        try {
+
+            orderSchema.create({ customer: customerId, total, status, items }, (err, order) => {
+                if (err)
+                    return res.status(400).send({ error: "Falha ao registra o pedido." });
+
+                return res.send({ order });
+            });
+        } catch (err) {
+            console.error(err)
+            return res.status(400).send({ error: "Falha no registro de pedido." });
+        }
     };
 
     const patchOrder = (req, res) => {
@@ -66,6 +77,9 @@ const controller = () => {
             filters.customer = customerId;
 
         const order = await orderSchema.find(filters);
+
+        console.log(order);
+        console.log(filters);
 
         if (!order || order.length < 1)
             return res.status(400).send({ error: "Nenhum pedido encontrado." });
