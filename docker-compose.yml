@@ -22,12 +22,14 @@ services:
     depends_on:
       - mongodb
   web:
+    build: "./website"
     image: "php:7.2-apache"
     container_name: php-container
     restart: always
     environment:
       API_URL: "api"
       API_PORT: "3000"
+      ALLOW_OVERRIDE: "true"
     volumes:
       - ./website:/var/www/html
     ports:

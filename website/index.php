@@ -1,9 +1,13 @@
 <?php
 session_start();
-if ($_SESSION["token"]) {
-    header('Location: dashboard.php');
-    exit;
-}
+require "classes/url.class.php";
+
+$modulo = Url::getURL(0);
+if ($modulo == null)
+    $modulo = "home";
+
+if ($_SESSION["token"])
+    $modulo = "dashboard";
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -16,27 +20,18 @@ if ($_SESSION["token"]) {
     <link rel="icon" href="favicon.ico">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="stylesheets/signin.css" rel="stylesheet">
+    <link href="<?php echo URL::getBase() ?>stylesheets/<?php echo $modulo ?>.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
-    <form class="form-signin" method="POST" action="signin.php">
-        <img class="mb-4" src="images/sys.png" alt="">
-        <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
-        <label for="inputEmail" class="sr-only">Endereço de email</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Seu email" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Senha</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Senha" required="">
-        <?php
-        if ($_SESSION["error"]) {
-            echo '<div class="alert alert-danger" role="alert">' . $_SESSION["error"] . '</div>';
-            unset($_SESSION["error"]);
-        }
-        ?>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        <a class="btn btn-lg btn-primary btn-block" href="register.php">Cadastro</a>
-        <p class="mt-5 mb-3 text-muted">© 2019</p>
-    </form>
+    <?php
+    if ($modulo == "api")
+        require $modulo . ".php";
+    else if (file_exists("pages/" . $modulo . ".php"))
+        require "pages/" . $modulo . ".php";
+    else
+        require "pages/404.php";
+    ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

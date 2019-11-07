@@ -9,11 +9,13 @@ $cabecalho = array(
     'Authorization: Bearer ' . $_SESSION['token']
 );
 
+
+
 $resultado = array_diff(array('email' => $_POST['email'], 'name' => $_POST['name'], 'cpf' => $_POST['cpf']), $_SESSION['customer']);
 
 $conteudo = json_encode($resultado);
 
-$url = 'http://' . $_ENV['API_URL'] . ':' . $_ENV['API_PORT'] . '/customer/' . $_SESSION['customer']['_id'];
+$url = '/customer/' . $_SESSION['customer']['_id'];
 
 $respostaApi = $api->enviaConteudoParaAPI($cabecalho, $conteudo, $url, 'PATCH');
 
