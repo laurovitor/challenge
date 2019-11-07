@@ -49,11 +49,13 @@ const controller = () => {
             if (!isEmail(email))
                 return res.status(400).send({ error: "Informe um email valido." });
 
-            if (name.length < 5)
-                return res.status(400).send({ error: "O Nome esta muito curto." });
+            if (name)
+                if (name.length < 5)
+                    return res.status(400).send({ error: "O Nome esta muito curto." });
 
-            if (password.length < 5)
-                return res.status(400).send({ error: "A senha esta muito curta." });
+            if (password)
+                if (password.length < 5)
+                    return res.status(400).send({ error: "A senha esta muito curta." });
 
             if (password != passwordConfirmation)
                 return res.status(400).send({ error: "A confirmação da senha não é valida." });
@@ -104,8 +106,9 @@ const controller = () => {
         if (email && !isEmail(email))
             return res.status(400).send({ error: "Informe um email valido." });
 
-        if (name.length < 5)
-            return res.status(400).send({ error: "O Nome esta muito curto." });
+        if (name)
+            if (name.length < 5)
+                return res.status(400).send({ error: "O Nome esta muito curto." });
 
         if (await customerSchema.findOne({ email }))
             return res.status(400).send({ error: "Email já cadastrado." });
@@ -113,14 +116,14 @@ const controller = () => {
         if (await customerSchema.findOne({ cpf }))
             return res.status(400).send({ error: "CPF já cadastrado." });
 
-        customerSchema.findByIdAndUpdate(id, req.body, (err, customer) => {
+        customerSchema.findByIdAndUpdate(id, req.body, { new: true }, (err, customer) => {
             if (err)
                 return res.status(400).send({ error: "Falha ao atualizar usuário." });
 
             if (!customer)
                 return res.status(400).send({ error: "Usuário não encontrado." });
 
-            return res.send({ success: `${req.body.name ? req.body.name : customer.name} atualizado com sucesso.`, customer });
+            return res.send({ success: `${customer.name} atualizado com sucesso.`, customer });
         });
     };
 

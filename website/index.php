@@ -21,7 +21,7 @@ if ($_SESSION["token"]) {
 
 <body class="text-center">
     <form class="form-signin" method="POST" action="signin.php">
-        <img class="mb-4" src="images/api.png" alt="">
+        <img class="mb-4" src="images/sys.png" alt="">
         <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
         <label for="inputEmail" class="sr-only">Endereço de email</label>
         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Seu email" required="" autofocus="">

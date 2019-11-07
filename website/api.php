@@ -5,10 +5,21 @@ class ComunicacaoAPI
     {
         try {
             $ch = curl_init($url);
-            // Marca que vai enviar por POST(1=SIM), caso tpRequisicao seja igual a "POST"
-            if ($tpRequisicao == 'POST') {
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
+            switch ($tpRequisicao) {
+                case 'POST':
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
+                    break;
+                case 'PATCH':
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
+                    break;
+                case 'DELETE':
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+                    break;
+                default:
+                    // GET é definido como padrão.
+                    break;
             }
 
             if (!empty($cabecalho)) {
