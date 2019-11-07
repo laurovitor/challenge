@@ -16,10 +16,17 @@ $respostaApi = $api->enviaConteudoParaAPI($cabecalho, $conteudo, $url, 'POST');
 
 $resposta = json_decode($respostaApi, true);
 
-//var_dump($resposta);
-
 if ($resposta["error"]) {
     $_SESSION["error"] = $resposta["error"];
     header('Location: register.php');
+    exit;
+}
+
+if ($resposta["customer"])
+    $_SESSION["customer"] = $resposta["customer"];
+
+if ($resposta["token"]) {
+    $_SESSION["token"] = $resposta["token"];
+    header('Location: dashboard.php');
     exit;
 }

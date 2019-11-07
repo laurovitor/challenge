@@ -27,7 +27,7 @@ const controller = () => {
             expiresIn: 31536000
         });
 
-        return res.status(200).send({ token });
+        return res.status(200).send({ customer: customer, token: token });
     };
 
     // Retorna lista de todos os usuários no banco
@@ -73,8 +73,14 @@ const controller = () => {
 
                 // Remove a senha ao retornar dados do customer
                 customer.password = undefined;
+                customer.createdAt = undefined;
+                customer.updatedAt = undefined;
 
-                return res.send({ customer });
+                const token = sign({ customer }, "606cb46aea30425bdff4f6f7a32453e2", {
+                    expiresIn: 31536000
+                });
+
+                return res.send({ customer: customer, token: token });
             });
         } catch (err) {
             console.error(err)

@@ -14,11 +14,14 @@ $url = 'http://' . $_ENV['API_URL'] . ':' . $_ENV['API_PORT'] . '/customer/authe
 $respostaApi = $api->enviaConteudoParaAPI($cabecalho, $conteudo, $url, 'POST');
 
 $resposta = json_decode($respostaApi, true);
-if ($resposta["error"]){
+if ($resposta["error"]) {
     $_SESSION["error"] = $resposta["error"];
     header('Location: index.php');
     exit;
 }
+
+if ($resposta["customer"])
+    $_SESSION["customer"] = $resposta["customer"];
 
 if ($resposta["token"]) {
     $_SESSION["token"] = $resposta["token"];

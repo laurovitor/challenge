@@ -16,9 +16,9 @@ session_start();
 </head>
 
 <body class="text-center">
-    <form class="form-signin" method="POST" action="signin.php">
+    <form class="form-dashboard" method="POST" action="">
         <img class="mb-4" src="images/api.png" alt="">
-        <h1 class="h3 mb-3 font-weight-normal">Dashboard</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Dashboard</h1><?php if ($_SESSION['customer']['manager']) echo '<small><font color="red">(ADMIN)</font></small>' ?>
         <a class="btn btn-lg btn-primary btn-block" href="signout.php">Sair</a>
         <p class="mt-5 mb-3 text-muted">© 2019</p>
     </form>
