@@ -1,42 +1,88 @@
 <?php
+session_start();
+include 'comunicacao.class.php';
+
 class API
 {
-    public function enviaConteudoParaAPI($cabecalho = array(), $conteudoAEnviar, $url, $tpRequisicao)
+    private function cabecalho($token = null)
     {
-        try {
-            $ch = curl_init('http://' . $_ENV['API_URL'] . ':' . $_ENV['API_PORT']  . $url);
-            switch ($tpRequisicao) {
-                case 'POST':
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
-                    break;
-                case 'PATCH':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $conteudoAEnviar);
-                    break;
-                case 'DELETE':
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-                    break;
-                default:
-                    // GET é definido como padrão.
-                    break;
-            }
+        return array(
+            'Content-Type: application/json',
+            'Accept: json',
+            'Authorization: Bearer ' . $token
+        );
+    }
 
-            if (!empty($cabecalho)) {
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $cabecalho);
-            }
+    private function comunicacao()
+    {
+        return new Comunicacao;
+    }
 
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            /*
-            Caso você não receba retorno da API, pode estar com problema de SSL.
-            Remova o comentário da linha abaixo para desabilitar a verificação.
-            */
-            //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $resposta = curl_exec($ch);
-            curl_close($ch);
-        } catch (Exception $e) {
-            return $e->getMessage();
+    public function authenticate($email, $password)
+    {
+        $conteudo = json_encode(array('email' => $email, 'password' => $password));
+        $url = '/customer/authenticate';
+        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'POST');
+
+        $resposta = json_decode($resposta, true);
+        if ($resposta["error"])
+            $_SESSION["error"] = $resposta["error"];
+
+        if ($resposta["customer"])
+            $_SESSION["customer"] = $resposta["customer"];
+
+        if ($resposta["token"]) {
+            $_SESSION["token"] = $resposta["token"];
+            return "dashboard";
         }
-        return $resposta;
+
+        return null;
+    }
+
+    public function register($email, $name, $cpf, $password, $passwordConfirmation)
+    {
+        $conteudo = json_encode(array('email' => $email, 'name' => $name, 'cpf' => $cpf, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation));
+        $url = '/customer';
+        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'POST');
+
+        $resposta = json_decode($resposta, true);
+
+        if ($resposta["error"]) {
+            $_SESSION["error"] = $resposta["error"];
+            return "register";
+        }
+
+        if ($resposta["token"]) {
+            if ($resposta["customer"])
+                $_SESSION["customer"] = $resposta["customer"];
+
+            $_SESSION["token"] = $resposta["token"];
+            return "dashboard";
+        }
+
+        return null;
+    }
+
+    public function updateCustomer($email, $name, $cpf)
+    {
+        $conteudo = array_diff(array('email' => $email, 'name' => $name, 'cpf' => $cpf), $_SESSION['customer']);
+        $conteudo = json_encode($conteudo);
+
+        $url = '/customer/' . $_SESSION['customer']['_id'];
+
+        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'PATCH');
+
+        $resposta = json_decode($resposta, true);
+
+        if ($resposta["error"])
+            $_SESSION["error"] = $resposta["error"];
+
+        if ($resposta["success"])
+            $_SESSION["success"] = $resposta["success"];
+
+        if ($resposta["customer"])
+            $_SESSION["customer"] = $resposta["customer"];
+
+        return "dashboard";
     }
 }

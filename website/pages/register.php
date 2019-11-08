@@ -1,5 +1,5 @@
 <form class="form-signup" method="POST" action="api/signup">
-    <img class="mb-4" src="images/sys.png" alt="">
+    <img class="mb-4" src="<?php echo URL::getBase() ?>images/sys.png" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Faça o cadastro</h1>
     <label for="inputEmail" class="sr-only">Endereço de email</label>
     <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Seu email" required="" autofocus="">
