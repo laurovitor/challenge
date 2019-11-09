@@ -2,7 +2,6 @@
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com//laurovitor/challenge/blob/master/LICENSE)
 ![](https://img.shields.io/github/package-json/v/laurovitor/node-express-api.svg)
-![](https://img.shields.io/github/last-commit/laurovitor/node-express-api.svg?color=red)
 ![](https://img.shields.io/github/languages/top/laurovitor/node-express-api.svg?color=yellow)
 ![](https://img.shields.io/github/languages/count/laurovitor/node-express-api.svg?color=lightgrey)
 ![](https://img.shields.io/github/languages/code-size/laurovitor/node-express-api.svg)
