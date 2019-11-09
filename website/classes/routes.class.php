@@ -2,6 +2,8 @@
 require "api.class.php";
 class Routes
 {
+    private static $url = null;
+
     public static function routeURL()
     {
         if (Url::getURL(0) == "api") {
@@ -18,19 +20,16 @@ class Routes
                 case 'updateCustomer':
                     API::updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']);
                     break;
-                default:
-                    $url = self::error404();
-                    break;
             }
         } else {
-            if ($url == null)
-                $url = self::routeIndex();
+            if (self::$url == null)
+                self::$url = self::routeIndex();
 
             if ($_SESSION["token"])
-                $url = self::routeDashboard();
+                self::$url = self::routeDashboard();
 
-            if (file_exists("../pages/" . $url . ".php"))
-                return $url;
+            if (file_exists("../pages/" . self::$url . ".php"))
+                return self::$url;
             else
                 return self::error404();
         }

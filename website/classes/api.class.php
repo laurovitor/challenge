@@ -11,7 +11,6 @@ class API
     );
     private static $communication = new Communication;
 
-
     public static function authenticate($email, $password)
     {
         $content = json_encode(array('email' => $email, 'password' => $password));
