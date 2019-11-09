@@ -1,74 +1,34 @@
 <?php
 session_start();
 require "classes/url.class.php";
-require "classes/api.class.php";
 require "classes/routes.class.php";
 
-$route = new Routes;
-$api = new API;
-
-$modulo = Url::getURL(0);
-
-if ($modulo == "api") {
-    $sendToUrl = null;
-
-    switch (Url::getURL(1)) {
-        case 'signin':
-            $sendToUrl = $api->authenticate($_POST['email'], $_POST['password']);
-            break;
-        case 'signup':
-            $sendToUrl = $api->register($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']);
-            break;
-        case 'signout':
-            unset($_SESSION["token"]);
-            $sendToUrl = null;
-            break;
-        case 'updateCustomer':
-            $sendToUrl = $api->updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']);
-            break;
-        default:
-            $sendToUrl = "404";
-            break;
-    }
-
-    header('Location: /' . $sendToUrl);
-    exit;
-}
-
-if ($modulo == null)
-    $modulo = "home";
-
-if ($_SESSION["token"])
-    $modulo = "dashboard";
+$url = Routes::routeURL();
 
 ?>
-    <!doctype html>
-    <html lang="pt-br">
+<!doctype html>
+<html lang="pt-br">
 
-    <head>
-        <title>Challenge - PHP</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="<?php echo URL::getBase() ?>favicon.ico">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="<?php echo URL::getBase() ?>stylesheets/<?php echo $modulo ?>.css" rel="stylesheet">
-    </head>
+<head>
+    <title>Challenge - PHP</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="<?php echo URL::getBase() ?>favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="<?php echo URL::getBase() ?>stylesheets/<?php echo $url ?>.css" rel="stylesheet">
+</head>
 
-    <body class="text-center">
-        <?php
-        if (file_exists("pages/" . $modulo . ".php")) {
-            require "pages/" . $modulo . ".php";
-        } else {
-            require "pages/404.php";
-        }
-        ?>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+<body class="text-center">
+    <?php
+    require "pages/" . $url . ".php";
+    ?>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 
-    </html>
+</html>
