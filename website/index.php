@@ -2,33 +2,36 @@
 session_start();
 require "classes/url.class.php";
 require "classes/api.class.php";
+require "classes/routes.class.php";
+
+$route = new Routes;
+$api = new API;
 
 $modulo = Url::getURL(0);
 
 if ($modulo == "api") {
-    $api = new API;
-    $redirecionar = null;
+    $sendToUrl = null;
 
     switch (Url::getURL(1)) {
         case 'signin':
-            $redirecionar = $api->authenticate($_POST['email'], $_POST['password']);
+            $sendToUrl = $api->authenticate($_POST['email'], $_POST['password']);
             break;
         case 'signup':
-            $redirecionar = $api->register($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']);
+            $sendToUrl = $api->register($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']);
             break;
         case 'signout':
             unset($_SESSION["token"]);
-            $redirecionar = null;
+            $sendToUrl = null;
             break;
         case 'updateCustomer':
-            $redirecionar = $api->updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']);
+            $sendToUrl = $api->updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']);
             break;
         default:
-            $redirecionar = "404";
+            $sendToUrl = "404";
             break;
     }
-    
-    header('Location: /' . $redirecionar);
+
+    header('Location: /' . $sendToUrl);
     exit;
 }
 

@@ -1,87 +1,81 @@
 <?php
 session_start();
-include 'comunicacao.class.php';
+include 'communication.class.php';
 
 class API
 {
-    private function cabecalho()
-    {
-        return array(
-            'Content-Type: application/json',
-            'Accept: json',
-            'Authorization: Bearer ' . $_SESSION["token"]
-        );
-    }
+    private static $header = array(
+        'Content-Type: application/json',
+        'Accept: json',
+        'Authorization: Bearer ' . $_SESSION["token"]
+    );
+    private static $communication = new Communication;
 
-    private function comunicacao()
-    {
-        return new Comunicacao;
-    }
 
-    public function authenticate($email, $password)
+    public static function authenticate($email, $password)
     {
-        $conteudo = json_encode(array('email' => $email, 'password' => $password));
+        $content = json_encode(array('email' => $email, 'password' => $password));
         $url = '/customer/authenticate';
-        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'POST');
+        $answer = self::$communication->SendContentToAPI(self::$header, $content, $url, 'POST');
 
-        $resposta = json_decode($resposta, true);
-        if ($resposta["error"])
-            $_SESSION["error"] = $resposta["error"];
+        $answer = json_decode($answer, true);
+        if ($answer["error"])
+            $_SESSION["error"] = $answer["error"];
 
-        if ($resposta["customer"])
-            $_SESSION["customer"] = $resposta["customer"];
+        if ($answer["customer"])
+            $_SESSION["customer"] = $answer["customer"];
 
-        if ($resposta["token"]) {
-            $_SESSION["token"] = $resposta["token"];
+        if ($answer["token"]) {
+            $_SESSION["token"] = $answer["token"];
             return "dashboard";
         }
 
         return null;
     }
 
-    public function register($email, $name, $cpf, $password, $passwordConfirmation)
+    public static function register($email, $name, $cpf, $password, $passwordConfirmation)
     {
-        $conteudo = json_encode(array('email' => $email, 'name' => $name, 'cpf' => $cpf, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation));
+        $content = json_encode(array('email' => $email, 'name' => $name, 'cpf' => $cpf, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation));
         $url = '/customer';
-        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'POST');
+        $answer = self::$communication->SendContentToAPI(self::$header, $content, $url, 'POST');
 
-        $resposta = json_decode($resposta, true);
+        $answer = json_decode($answer, true);
 
-        if ($resposta["error"]) {
-            $_SESSION["error"] = $resposta["error"];
+        if ($answer["error"]) {
+            $_SESSION["error"] = $answer["error"];
             return "register";
         }
 
-        if ($resposta["token"]) {
-            if ($resposta["customer"])
-                $_SESSION["customer"] = $resposta["customer"];
+        if ($answer["token"]) {
+            if ($answer["customer"])
+                $_SESSION["customer"] = $answer["customer"];
 
-            $_SESSION["token"] = $resposta["token"];
+            $_SESSION["token"] = $answer["token"];
             return "dashboard";
         }
 
         return null;
     }
 
-    public function updateCustomer($email, $name, $cpf)
+    public static function updateCustomer($email, $name, $cpf)
     {
-        $conteudo = array_diff(array('email' => $email, 'name' => $name, 'cpf' => $cpf), $_SESSION['customer']);
-        $conteudo = json_encode($conteudo);
+        $content = array_diff(array('email' => $email, 'name' => $name, 'cpf' => $cpf), $_SESSION['customer']);
+        $content = json_encode($content);
 
         $url = '/customer/' . $_SESSION['customer']['_id'];
 
-        $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'PATCH');
+        $answer = self::$communication->SendContentToAPI(self::$header, $content, $url, 'PATCH');
 
-        $resposta = json_decode($resposta, true);
-        
-        if ($resposta["error"])
-            $_SESSION["error"] = $resposta["error"];
+        $answer = json_decode($answer, true);
 
-        if ($resposta["success"])
-            $_SESSION["success"] = $resposta["success"];
+        if ($answer["error"])
+            $_SESSION["error"] = $answer["error"];
 
-        if ($resposta["customer"])
-            $_SESSION["customer"] = $resposta["customer"];
+        if ($answer["success"])
+            $_SESSION["success"] = $answer["success"];
+
+        if ($answer["customer"])
+            $_SESSION["customer"] = $answer["customer"];
 
         return "dashboard";
     }
