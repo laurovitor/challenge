@@ -4,8 +4,6 @@ class Routes
 {
     public static function routeURL()
     {
-        $url = null;
-
         if (Url::getURL(0) == "api") {
             switch (Url::getURL(1)) {
                 case 'signin':
@@ -21,20 +19,20 @@ class Routes
                     API::updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']);
                     break;
                 default:
-                    $url = "404";
+                    $url = self::error404();
                     break;
             }
         } else {
             if ($url == null)
-                $url = "home";
+                $url = self::routeIndex();
 
             if ($_SESSION["token"])
-                $url = "dashboard";
+                $url = self::routeDashboard();
 
             if (file_exists("../pages/" . $url . ".php"))
                 return $url;
             else
-                return "404";
+                return self::error404();
         }
     }
 
@@ -48,18 +46,26 @@ class Routes
         return "dashboard";
     }
 
+    public static function error404()
+    {
+        return "404";
+    }
+
     public static function routeCustomer()
     {
         return null;
     }
+
     public static function routeUsers()
     {
         return null;
     }
+
     public static function routeOrders()
     {
         return null;
     }
+
     public static function routeProducts()
     {
         return null;
