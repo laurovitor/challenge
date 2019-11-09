@@ -27,7 +27,7 @@ if ($modulo == "api") {
             $redirecionar = "404";
             break;
     }
-
+    
     header('Location: /' . $redirecionar);
     exit;
 }

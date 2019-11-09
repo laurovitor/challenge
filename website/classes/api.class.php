@@ -4,12 +4,12 @@ include 'comunicacao.class.php';
 
 class API
 {
-    private function cabecalho($token = null)
+    private function cabecalho()
     {
         return array(
             'Content-Type: application/json',
             'Accept: json',
-            'Authorization: Bearer ' . $token
+            'Authorization: Bearer ' . $_SESSION["token"]
         );
     }
 
@@ -73,7 +73,7 @@ class API
         $resposta = $this->comunicacao()->enviaConteudoParaAPI($this->cabecalho(), $conteudo, $url, 'PATCH');
 
         $resposta = json_decode($resposta, true);
-
+        
         if ($resposta["error"])
             $_SESSION["error"] = $resposta["error"];
 
