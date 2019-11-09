@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "classes/communication.class.php";
 require "classes/url.class.php";
 require "classes/routes.class.php";
 

@@ -1,7 +1,7 @@
 <?php
 class Communication
 {
-    public function SendContentToAPI ($header = array(), $contentToSend, $url, $requestType)
+    public static function SendContentToAPI ($header = array(), $contentToSend, $url, $requestType)
     {
         try {
             $ch = curl_init('http://' . $_ENV['API_URL'] . ':' . $_ENV['API_PORT']  . $url);

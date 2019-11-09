@@ -1,16 +1,19 @@
 <?php
 session_start();
-include 'communication.class.php';
 
 class customerController
 {
-    private static $communication = new Communication;
+    private static $header = array(
+        'Content-Type: application/json',
+        'Accept: json',
+        'Authorization: Bearer ' . $_SESSION["token"]
+    );
 
-    public static function authenticate($header, $email, $password)
+    public static function authenticate($email, $password)
     {
         $content = json_encode(array('email' => $email, 'password' => $password));
         $url = '/customer/authenticate';
-        $answer = self::$communication->SendContentToAPI($header, $content, $url, 'POST');
+        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'POST');
 
         $answer = json_decode($answer, true);
         if ($answer["error"])
@@ -29,7 +32,8 @@ class customerController
 
     public static function logout()
     {
-        return false;
+        unset($_SESSION["token"]);
+        return true;
     }
 
     public static function get($id)
@@ -42,11 +46,11 @@ class customerController
         return array();
     }
 
-    public static function add($header, $email, $name, $cpf, $password, $passwordConfirmation)
+    public static function add($email, $name, $cpf, $password, $passwordConfirmation)
     {
         $content = json_encode(array('email' => $email, 'name' => $name, 'cpf' => $cpf, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation));
         $url = '/customer';
-        $answer = self::$communication->SendContentToAPI($header, $content, $url, 'POST');
+        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'POST');
 
         $answer = json_decode($answer, true);
 
@@ -62,14 +66,14 @@ class customerController
         return false;
     }
 
-    public static function update($header, $customerArray)
+    public static function update($customerArray)
     {
         $content = array_diff($customerArray, $_SESSION['customer']);
         $content = json_encode($content);
 
         $url = '/customer/' . $_SESSION['customer']['_id'];
 
-        $answer = self::$communication->SendContentToAPI($header, $content, $url, 'PATCH');
+        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'PATCH');
 
         $answer = json_decode($answer, true);
 
