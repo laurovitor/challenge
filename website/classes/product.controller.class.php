@@ -1,30 +1,35 @@
 <?php
 session_start();
-include 'communication.class.php';
 
 class productController
 {
+    private static $header = array(
+        'Content-Type: application/json',
+        'Accept: json',
+        'Authorization: Bearer ' . $_SESSION["token"]
+    );
+
     public static function get($id)
     {
-        return false;
+        return "dashboard/product";
     }
 
     public static function list()
     {
-        return array();
+        return "dashboard/products";
     }
 
     public static function add()
     {
-        return false;
+        return "dashboard/products";
     }
 
     public static function update($id)
     {
-        return false;
+        return "dashboard/products";
     }
     public static function delete($id)
     {
-        return false;
+        return "dashboard/products";
     }
 }

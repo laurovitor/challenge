@@ -1,5 +1,6 @@
 <?php
-require "api.class.php";
+include 'customer.controller.class.php';
+
 class Routes
 {
     private static $url = null;
@@ -8,17 +9,31 @@ class Routes
     {
         if (Url::getURL(0) == "api") {
             switch (Url::getURL(1)) {
-                case 'signin':
-                    self::redirectToLocation(API::authenticate($_POST['email'], $_POST['password']));
+                case 'customer':
+                    switch (Url::getURL(2)) {
+                        case 'authenticate':
+                            self::redirectToLocation(customerController::authenticate($_POST['email'], $_POST['password']));
+                            break;
+                        case 'logout':
+                            self::redirectToLocation(customerController::logout());
+                            break;
+                        case 'get':
+                            self::redirectToLocation(customerController::get(Url::getURL(3)));
+                            break;
+                        case 'list':
+                            self::redirectToLocation(customerController::list(Url::getURL(3), Url::getURL(4), Url::getURL(5)));
+                            break;
+                        case 'register':
+                            self::redirectToLocation(customerController::add($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']));
+                            break;
+                        case 'update':
+                            self::redirectToLocation(customerController::update($_POST['email'], $_POST['name'], $_POST['cpf']));
+                            break;
+                    }
                     break;
-                case 'signup':
-                    self::redirectToLocation(API::register($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']));
+                case 'product':
                     break;
-                case 'signout':
-                    self::redirectToLocation(API::logout());
-                    break;
-                case 'updateCustomer':
-                    self::redirectToLocation(API::updateCustomer($_POST['email'], $_POST['name'], $_POST['cpf']));
+                case 'order':
                     break;
             }
         } else {
@@ -54,25 +69,5 @@ class Routes
     private static function error404()
     {
         return "404";
-    }
-
-    private static function routeCustomer()
-    {
-        return null;
-    }
-
-    private static function routeUsers()
-    {
-        return null;
-    }
-
-    private static function routeOrders()
-    {
-        return null;
-    }
-
-    private static function routeProducts()
-    {
-        return null;
     }
 }

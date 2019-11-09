@@ -24,26 +24,26 @@ class customerController
 
         if ($answer["token"]) {
             $_SESSION["token"] = $answer["token"];
-            return true;
+            return "dashboard";
         }
 
-        return false;
+        return null;
     }
 
     public static function logout()
     {
         unset($_SESSION["token"]);
-        return true;
+        return null;
     }
 
     public static function get($id)
     {
-        return false;
+        return "dashboard/user";
     }
 
-    public static function list()
+    public static function list($page, $total, $filter)
     {
-        return array();
+        return "dashboard/users";
     }
 
     public static function add($email, $name, $cpf, $password, $passwordConfirmation)
@@ -60,15 +60,15 @@ class customerController
         if ($answer["token"]) {
             $_SESSION["token"] = $answer["token"];
             $_SESSION["customer"] = $answer["customer"];
-            return true;
+            return "dashboard";
         }
 
-        return false;
+        return "register";
     }
 
-    public static function update($customerArray)
+    public static function update($email, $name, $cpf)
     {
-        $content = array_diff($customerArray, $_SESSION['customer']);
+        $content = array_diff(array('email' => $email, 'name' => $name, 'cpf' => $cpf), $_SESSION['customer']);
         $content = json_encode($content);
 
         $url = '/customer/' . $_SESSION['customer']['_id'];
@@ -83,9 +83,8 @@ class customerController
         if ($answer["success"]) {
             $_SESSION["success"] = $answer["success"];
             $_SESSION["customer"] = $answer["customer"];
-            return true;
         }
 
-        return false;
+        return "dashboard/profile";
     }
 }
