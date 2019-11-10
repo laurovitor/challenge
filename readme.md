@@ -2,6 +2,7 @@
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com//laurovitor/challenge/blob/master/LICENSE)
 ![](https://img.shields.io/github/last-commit/laurovitor/challenge.svg?color=red)
+![](https://img.shields.io/github/v/release/laurovitor/challenge.svg?color=red)
 ![](https://img.shields.io/github/languages/top/laurovitor/challenge.svg?color=yellow)
 ![](https://img.shields.io/github/languages/count/laurovitor/challenge.svg?color=lightgrey)
 ![](https://img.shields.io/github/languages/code-size/laurovitor/challenge.svg)
