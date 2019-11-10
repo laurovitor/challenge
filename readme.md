@@ -1,14 +1,12 @@
 # Challenge (API/DB/WEB)
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com//laurovitor/challenge/blob/master/LICENSE)
-![](https://img.shields.io/github/package-json/v/laurovitor/challenge.svg)
 ![](https://img.shields.io/github/last-commit/laurovitor/challenge.svg?color=red)
 ![](https://img.shields.io/github/languages/top/laurovitor/challenge.svg?color=yellow)
 ![](https://img.shields.io/github/languages/count/laurovitor/challenge.svg?color=lightgrey)
 ![](https://img.shields.io/github/languages/code-size/laurovitor/challenge.svg)
 ![](https://img.shields.io/github/repo-size/laurovitor/challenge.svg?color=blueviolet)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
-![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
 Aplicação usando Node.js, MongoDB e PHP.
 
