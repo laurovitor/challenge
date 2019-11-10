@@ -1,6 +1,6 @@
 # Challenge (API/DB/WEB)
 
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com//laurovitor/challenge/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/laurovitor/challenge/blob/master/LICENSE)
 ![](https://img.shields.io/github/last-commit/laurovitor/challenge.svg?color=red)
 ![](https://img.shields.io/github/languages/top/laurovitor/challenge.svg?color=yellow)
 ![](https://img.shields.io/github/languages/count/laurovitor/challenge.svg?color=lightgrey)
@@ -30,11 +30,11 @@ Clique [aqui](https://github.com/laurovitor/challenge/wiki/Coinfigura%C3%A7%C3%A
 
 ### Instalação do Projeto
 
-Clique [aqui](https://github.com/laurovitor/projects-settings/blob/master/nodejs/nodejs.md) e siga `Instalação de Projeto`.
+Clique [aqui](https://github.com/laurovitor/challenge/wiki/Instala%C3%A7%C3%A3o) e siga `Instalação de Projeto`.
 
 ### Execução do Projeto
 
-Clique [aqui](https://github.com/laurovitor/projects-settings/blob/master/nodejs/nodejs.md) e siga `Execução de Projeto para Desenvolvimento` ou `Execução de Projeto para Produção`.
+Clique [aqui](https://github.com/laurovitor/challenge/wiki/Execu%C3%A7%C3%A3o) e siga `Execução de Projeto para Desenvolvimento` ou `Execução de Projeto para Produção`.
 
 ### APIs
 
