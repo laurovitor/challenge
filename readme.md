@@ -8,7 +8,7 @@
 ![](https://img.shields.io/github/repo-size/laurovitor/challenge.svg?color=blueviolet)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
 
-Aplicação usando Node.js, MongoDB e PHP.
+Aplicação usando Node.js, MongoDB, PHP e Docker.
 
 ## Índice
 
@@ -20,7 +20,7 @@ Aplicação usando Node.js, MongoDB e PHP.
 
   - [Execução do Projeto](#execução-do-projeto)
 
-- [Utilizados no Projeto](#utilizados-no-projeto)
+- [APIs](#apis)
 
 ## Desenvolvimento
 
@@ -41,11 +41,16 @@ Clique [aqui](https://github.com/laurovitor/projects-settings/blob/master/nodejs
 - **Interna**
 
   - **Rotas**
-
+    - Usuários
+      - Autenticação
+      - Registro
+      - Lista todos os usuários
+      - Edita usuário
+      - Exibe perfil do usuário
     - Produtos
-
       - Adiciona novos produtos
       - Lista todos os produtos
       - Lista somente dados de um produto selecionado
       - Edita dados de produtos existentes
       - Exclui produtos existentes
+    - Pedidos
