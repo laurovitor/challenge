@@ -26,7 +26,7 @@ Aplicação usando Node.js, MongoDB, PHP e Docker.
 
 ### Configuração do Ambiente
 
-Clique [aqui](https://github.com/laurovitor/projects-settings/blob/master/README.md) e siga `Configuração de Ambiente`.
+Clique [aqui](https://github.com/laurovitor/challenge/wiki/Coinfigura%C3%A7%C3%A3o) e siga `Configuração de Ambiente`.
 
 ### Instalação do Projeto
 
