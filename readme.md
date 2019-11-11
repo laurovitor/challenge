@@ -45,15 +45,15 @@ Clique [aqui](https://github.com/laurovitor/challenge/wiki/Execu%C3%A7%C3%A3o) e
       - Autenticação (POST)
       - Listar (GET)
       - Inserir (POST)
-      - Editar (PACTH)
+      - Editar (PATCH)
       - Remover (DELETE)
     - Produtos
       - Listar (GET)
       - Inserir (POST)
-      - Editar (PACTH)
+      - Editar (PATCH)
       - Remover (DELETE)
     - Pedidos
       - Listar (GET)
       - Inserir (POST)
-      - Editar (PACTH)
+      - Editar (PATCH)
       - Remover (DELETE)
