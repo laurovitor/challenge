@@ -1,4 +1,4 @@
-<form method="POST" action="api/updateCustomer">
+<form method="POST" action="/api/customer/update">
     <div class="form-group">
         <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" value="<?php echo $_SESSION['customer']['email']; ?>">
     </div>
@@ -11,5 +11,5 @@
         </div>
     </div>
     <button type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button>
-    <a class="btn btn-lg btn-primary btn-block" href="api/signout">Deslogar</a>
+    <a class="btn btn-lg btn-primary btn-block" href="/api/customer/logout">Deslogar</a>
 </form>

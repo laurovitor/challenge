@@ -18,18 +18,18 @@
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="produtos" role="tabpanel" aria-labelledby="produtcs-tab">
+    <div class="tab-pane fade <?php if (Url::getURL(1) == "products" || Url::getURL(1) == null) echo "show active" ?>" id="produtos" role="tabpanel" aria-labelledby="produtcs-tab">
       <?php include "products.php" ?>
     </div>
-    <div class="tab-pane fade" id="pedidos" role="tabpanel" aria-labelledby="orders-tab">
+    <div class="tab-pane fade <?php if (Url::getURL(1) == "orders") echo "show active" ?>" id="pedidos" role="tabpanel" aria-labelledby="orders-tab">
       <?php include "orders.php" ?>
     </div>
     <?php if ($_SESSION['customer']['manager']) { ?>
-      <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="users-tab">
+      <div class="tab-pane fade <?php if (Url::getURL(1) == "users") echo "show active" ?>" id="usuarios" role="tabpanel" aria-labelledby="users-tab">
         <?php include "users.php" ?>
       </div>
     <?php } ?>
-    <div class="tab-pane fade" id="perfil" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane fade <?php if (Url::getURL(1) == "profile") echo "show active" ?>" id="perfil" role="tabpanel" aria-labelledby="profile-tab">
       <?php include "profile.php" ?>
     </div>
   </div>

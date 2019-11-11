@@ -1,4 +1,4 @@
-<form class="form-signin" method="POST" action="api/signin">
+<form class="form-signin" method="POST" action="/api/customer/authenticate">
     <img class="mb-4" src="<?php echo URL::getBase() ?>images/sys.png" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
     <label for="inputEmail" class="sr-only">Endereço de email</label>
@@ -12,6 +12,6 @@
     }
     ?>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    <a class="btn btn-lg btn-primary btn-block" href="register">Cadastro</a>
+    <a class="btn btn-lg btn-primary btn-block" href="/register">Cadastro</a>
     <p class="mt-5 mb-3 text-muted">© 2019</p>
 </form>

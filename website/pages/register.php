@@ -1,4 +1,4 @@
-<form class="form-signup" method="POST" action="api/signup">
+<form class="form-signup" method="POST" action="/api/customer/add">
     <img class="mb-4" src="<?php echo URL::getBase() ?>images/sys.png" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Faça o cadastro</h1>
     <label for="inputEmail" class="sr-only">Endereço de email</label>

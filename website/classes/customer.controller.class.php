@@ -3,17 +3,20 @@ session_start();
 
 class customerController
 {
-    private static $header = array(
-        'Content-Type: application/json',
-        'Accept: json',
-        'Authorization: Bearer ' . $_SESSION["token"]
-    );
+    private static function header()
+    {
+        return array(
+            'Content-Type: application/json',
+            'Accept: json',
+            'Authorization: Bearer ' . $_SESSION["token"]
+        );
+    }
 
     public static function authenticate($email, $password)
     {
         $content = json_encode(array('email' => $email, 'password' => $password));
         $url = '/customer/authenticate';
-        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'POST');
+        $answer = Communication::SendContentToAPI(self::header(), $content, $url, 'POST');
 
         $answer = json_decode($answer, true);
         if ($answer["error"])
@@ -24,33 +27,33 @@ class customerController
 
         if ($answer["token"]) {
             $_SESSION["token"] = $answer["token"];
-            return "dashboard";
+            return "/dashboard";
         }
 
-        return null;
+        return "/";
     }
 
     public static function logout()
     {
         unset($_SESSION["token"]);
-        return null;
+        return "/";
     }
 
     public static function get($id)
     {
-        return "dashboard/user";
+        return "/dashboard/user";
     }
 
     public static function list($page, $total, $filter)
     {
-        return "dashboard/users";
+        return "/dashboard/users";
     }
 
     public static function add($email, $name, $cpf, $password, $passwordConfirmation)
     {
         $content = json_encode(array('email' => $email, 'name' => $name, 'cpf' => $cpf, 'password' => $password, 'passwordConfirmation' => $passwordConfirmation));
         $url = '/customer';
-        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'POST');
+        $answer = Communication::SendContentToAPI(self::header(), $content, $url, 'POST');
 
         $answer = json_decode($answer, true);
 
@@ -60,10 +63,10 @@ class customerController
         if ($answer["token"]) {
             $_SESSION["token"] = $answer["token"];
             $_SESSION["customer"] = $answer["customer"];
-            return "dashboard";
+            return "/dashboard";
         }
 
-        return "register";
+        return "/register";
     }
 
     public static function update($email, $name, $cpf)
@@ -73,7 +76,7 @@ class customerController
 
         $url = '/customer/' . $_SESSION['customer']['_id'];
 
-        $answer = Communication::SendContentToAPI(self::$header, $content, $url, 'PATCH');
+        $answer = Communication::SendContentToAPI(self::header(), $content, $url, 'PATCH');
 
         $answer = json_decode($answer, true);
 
@@ -85,6 +88,6 @@ class customerController
             $_SESSION["customer"] = $answer["customer"];
         }
 
-        return "dashboard/profile";
+        return "/dashboard/profile";
     }
 }

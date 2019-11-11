@@ -23,7 +23,11 @@ $url = Routes::routeURL();
 
 <body class="text-center">
     <?php
-    require "pages/" . $url . ".php";
+
+    if (file_exists("pages/" . $url . ".php"))
+        require "pages/" . $url . ".php";
+    else
+        require "pages/404.php";
     ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

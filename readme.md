@@ -1,4 +1,4 @@
-# Challenge (API/DB/WEB)
+# Challenge
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/laurovitor/challenge/blob/master/LICENSE)
 ![](https://img.shields.io/github/last-commit/laurovitor/challenge.svg?color=red)

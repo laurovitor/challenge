@@ -3,8 +3,6 @@ include 'customer.controller.class.php';
 
 class Routes
 {
-    private static $url = null;
-
     public static function routeURL()
     {
         if (Url::getURL(0) == "api") {
@@ -12,22 +10,22 @@ class Routes
                 case 'customer':
                     switch (Url::getURL(2)) {
                         case 'authenticate':
-                            self::redirectToLocation(customerController::authenticate($_POST['email'], $_POST['password']));
+                            header('Location: ' . customerController::authenticate($_POST['email'], $_POST['password']));
                             break;
                         case 'logout':
-                            self::redirectToLocation(customerController::logout());
+                            header('Location: ' . customerController::logout());
                             break;
                         case 'get':
-                            self::redirectToLocation(customerController::get(Url::getURL(3)));
+                            header('Location: ' . customerController::get(Url::getURL(3)));
                             break;
                         case 'list':
-                            self::redirectToLocation(customerController::list(Url::getURL(3), Url::getURL(4), Url::getURL(5)));
+                            header('Location: ' . customerController::list(Url::getURL(3), Url::getURL(4), Url::getURL(5)));
                             break;
-                        case 'register':
-                            self::redirectToLocation(customerController::add($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']));
+                        case 'add':
+                            header('Location: ' . customerController::add($_POST['email'], $_POST['name'], $_POST['cpf'], $_POST['password'], $_POST['password']));
                             break;
                         case 'update':
-                            self::redirectToLocation(customerController::update($_POST['email'], $_POST['name'], $_POST['cpf']));
+                            header('Location: ' . customerController::update($_POST['email'], $_POST['name'], $_POST['cpf']));
                             break;
                     }
                     break;
@@ -37,23 +35,18 @@ class Routes
                     break;
             }
         } else {
-            if (self::$url == null)
-                self::$url = self::routeIndex();
+            $url = Url::getURL(0);
+            if ($url == null)
+                $url = self::routeIndex();
 
             if ($_SESSION["token"])
-                self::$url = self::routeDashboard();
+                $url = self::routeDashboard();
 
-            if (file_exists("../pages/" . self::$url . ".php"))
-                return self::$url;
+            if (file_exists("pages/" . $url . ".php"))
+                return $url;
             else
                 return self::error404();
         }
-    }
-
-    public static function redirectToLocation($url)
-    {
-        header('Location: ' . $url);
-        exit;
     }
 
     private static function routeIndex()
