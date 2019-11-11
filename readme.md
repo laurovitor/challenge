@@ -42,15 +42,18 @@ Clique [aqui](https://github.com/laurovitor/challenge/wiki/Execu%C3%A7%C3%A3o) e
 
   - **Rotas**
     - Usuários
-      - Autenticação
-      - Registro
-      - Lista todos os usuários
-      - Edita usuário
-      - Exibe perfil do usuário
+      - Autenticação (POST)
+      - Listar (GET)
+      - Inserir (POST)
+      - Editar (PACTH)
+      - Remover (DELETE)
     - Produtos
-      - Adiciona novos produtos
-      - Lista todos os produtos
-      - Lista somente dados de um produto selecionado
-      - Edita dados de produtos existentes
-      - Exclui produtos existentes
+      - Listar (GET)
+      - Inserir (POST)
+      - Editar (PACTH)
+      - Remover (DELETE)
     - Pedidos
+      - Listar (GET)
+      - Inserir (POST)
+      - Editar (PACTH)
+      - Remover (DELETE)
