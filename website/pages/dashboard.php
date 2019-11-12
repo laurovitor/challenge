@@ -6,11 +6,11 @@
       <a class="nav-link <?php if (Url::getURL(1) == "products" || Url::getURL(1) == null) echo "active" ?>" id="products-tab" data-toggle="tab" href="#produtos" role="tab" aria-controls="produtos" aria-selected="true">Produtos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <?php if (Url::getURL(1) == "orders") echo "active" ?>" id="orders-tab" data-toggle="tab" href="#pedidos" role="tab" aria-controls="pedidos" aria-selected="false">Pedidos</a>
+      <a class="nav-link <?php if (Url::getURL(1) == "orders") echo "active" ?>" id="orders-tab" data-toggle="tab" href="/dashboard/orders" role="tab" aria-controls="pedidos" aria-selected="false">Pedidos</a>
     </li>
     <?php if ($_SESSION['customer']['manager']) { ?>
       <li class="nav-item">
-        <a class="nav-link <?php if (Url::getURL(1) == "users") echo "active" ?>" id="users-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuários</a>
+        <a class="nav-link <?php if (Url::getURL(1) == "users") echo "active" ?>" id="users-tab" data-toggle="tab" href="/dashboard/users" role="tab" aria-controls="usuarios" aria-selected="false">Usuários</a>
       </li>
     <?php } ?>
     <li class="nav-item">
